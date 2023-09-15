@@ -1,0 +1,85 @@
+.root{
+    font-size: 16px;
+}
+
+header {
+    padding: 1.5rem 0;
+    border-radius: 0 0 0.938rem 0.938rem;
+    -webkit-box-shadow: 0 0.313rem  .5rem rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0.313rem  .5rem rgba(0, 0, 0, 0.1);
+    background-color: rgb(161, 240, 210);
+  }
+
+footer {
+    text-align: center;
+    padding: 3px;
+    background-color: black;
+    color: white;
+  }
+
+form {border: 3px solid #f1f1f1;
+        width: 40rem;}
+  
+ 
+  
+.loginbutton{
+    background-color: #04AA6D;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+.loginbutton:hover {
+    opacity: 0.8;
+  }
+  
+ 
+  
+.imgcontainer {
+    display: flex;
+    justify-content: center;
+  }
+
+.imgcontainer label {
+    font-size: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    width: 10rem;
+    height: 10rem;
+    background: aliceblue;
+    border: 2px solid lightblue;
+  }
+
+  .loginformlabel{
+    text-align: center;
+    font-size: 24px;
+    font-weight:900;
+    padding: 3px;
+    background-color: #f1f1f1;
+    color: black;
+  }
+
+  .container {
+    padding: 16px;
+  }
+  
+  span.psw {
+    float: right;
+    padding-top: 16px;
+  }
+  
+  /* Change styles for span and cancel button on extra small screens */
+  @media screen and (max-width: 300px) {
+    span.psw {
+       display: block;
+       float: none;
+    }
+    .cancelbtn {
+       width: 100%;
+    }
+  }
