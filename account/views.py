@@ -4,6 +4,9 @@ from . import Checklogin
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from . import models ,serializers
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
 # Create your views here.
 
 
@@ -72,3 +75,36 @@ def logoutuser(request):
 
 
 
+
+
+
+
+
+
+
+
+class Addorder(APIView):
+    def post(self,request):
+        
+        order=models.Stock.objects.get(id=request.POST['id'])
+        if order.qnt!=0:
+            order.qnt=order.qnt-int(request.POST['qut'])
+            order.is_sold=True
+            order.save()
+        else:
+            return Response({'success':'true',
+                            'error_msg':'',
+                            'errors':{},
+                            'response':'Order out of stock',
+                            },status=status.HTTP_202_ACCEPTED) 
+        plcord=models.Order_placed()
+        plcord.Product=order.Product
+        plcord.amnt=order.amnt
+        plcord.Order_by='test'
+
+        return Response({'success':'true',
+                            'error_msg':'',
+                            'errors':{},
+                            'response':{},
+
+                            },status=status.HTTP_202_ACCEPTED)
