@@ -3,19 +3,25 @@ from django.contrib.auth import authenticate, logout, login
 from . import Checklogin
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from . import models
+from . import models ,serializers
 # Create your views here.
 
 
 def base(request):
-    return render(request, 'students/index.html')
+    return render(request, 'Stock/index.html')
 
 def signup(request):
-    return render(request, 'students/Signup.html')
+    return render(request, 'Stock/Signup.html')
 
 @login_required(login_url='/')
 def dashboard(request):
-    return render(request, 'students/dashboard/dashboard.html')
+    Total_stock=models.Stock.objects.filter(is_sold=False).count()
+    Total_sale=models.Stock.objects.filter(is_sold=True).count()
+    profit=0
+    loss=0
+    data=models.Order_placed.objects.all()
+    list=serializers.new_order_serializer(data,many=True).data
+    return render(request, 'Stock/dashboard/dashboard.html',{'total_stock':Total_stock,'total_sale':Total_sale,'profit':profit,'loss':loss,'order_list':list})
 
 
 def dologin(request):
@@ -23,7 +29,7 @@ def dologin(request):
         user=Checklogin.CheckUser.authenticate(request, username=request.POST.get('email'), password=request.POST.get('password'))
         if user!=None:
             login(request, user)
-            if user.status!=False:
+            if user.active!=False:
                 return redirect('dashboard')
             else:
                 messages.error(request,'User not verified!')  
@@ -45,8 +51,6 @@ def registration(request):
             user.last_name=request.POST.get('last_name')
             user.email=request.POST.get('email')
             user.phone_number=request.POST.get('phone_number')
-            user.DOB=request.POST.get('DOB')
-            user.cls_name=request.POST.get('cls_name')
             if request.POST.get('password')!=request.POST.get('confirm_password'):
                 messages.error(request,'Confirm password is not matching')
                 return redirect('signup')
@@ -65,3 +69,6 @@ def registration(request):
 def logoutuser(request):
     logout(request)
     return redirect('/')
+
+
+

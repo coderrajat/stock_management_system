@@ -38,20 +38,15 @@ class MyAccountManager(BaseUserManager):
 
 
 class User(AbstractBaseUser):
-	image=models.ImageField(upload_to='Student/profile')
+	image=models.ImageField(upload_to='Images/profile')
 	first_name=models.CharField(max_length=50,default='')
 	last_name=models.CharField(max_length=50,default='')
 	phone_number=models.CharField(max_length=50,default='')
 	email=models.EmailField(unique=True, max_length=225)
-	cls_name=models.CharField(max_length=50,default='')
 	password=models.CharField(max_length=258,default='')
-	DOB=models.DateField(auto_now_add=True,auto_now=False )
-	CHOICES = (
-	("student", "student"),
-	("teacher", "teacher"),
-	)
-	usertype=models.CharField(max_length=50,choices=CHOICES, default='student')
-	status=models.BooleanField(default=False)
+	profit=models.IntegerField(default=0)
+	loss=models.IntegerField(default=0)
+	active=models.BooleanField(default=True)
 	is_admin = models.BooleanField(default=False)
 	is_staff= models.BooleanField(default=False)
 	USERNAME_FIELD = 'email'
@@ -65,4 +60,22 @@ class User(AbstractBaseUser):
 	def has_module_perms(self, app_label):
 		return True
 
+
+
+
+class Stock(models.Model):
+	Product=models.CharField(max_length=50,default='')
+	product_detials=models.CharField(max_length=250,default='')
+	qnt=models.IntegerField(default=0)
+	order_date=models.DateTimeField(auto_created=True)
+	amnt=models.IntegerField(default=0)
+	is_sold=models.BooleanField(default=False)
+
+class Order_placed(models.Model):
+	Product=models.CharField(max_length=50,default='')
+	Order_by=models.CharField(max_length=50,default='')
+	order_date=models.DateTimeField(auto_created=True)
+	amnt=models.IntegerField(default=0)
+	order_status=models.CharField(max_length=40, default='progress') #progress, on_the_way, done
+	
 

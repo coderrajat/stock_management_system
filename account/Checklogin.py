@@ -10,7 +10,10 @@ class CheckUser(ModelBackend):
     def authenticate(self,username=None, password=None, **kwargs):
         UserModel=get_user_model()
         try:
-            user=UserModel.objects.get(email=username)
+            if username.endswith('.com'):
+                user=UserModel.objects.get(email=username)
+            else:
+                user=UserModel.objects.get(phone_number=username)
         except UserModel.DoesNotExist as e:
             return None
 

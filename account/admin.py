@@ -4,3 +4,5 @@ from .models import *
 
 
 admin.site.register(User)
+admin.site.register(Stock)
+admin.site.register(Order_placed)

@@ -16,7 +16,7 @@
 
 <body>
     <div class="root">
-        {% include "students/includes/header.html"  %}
+        {% include "Stock/includes/header.html"  %}
        
         <div class="d-flex flex-column align-items-center justify-content-center p-1">
             {% if messages %}
@@ -45,28 +45,24 @@
                 <div class='login p-1'>
                     <div class='container d-flex justify-content-center'>
                         <div class="SignUpform align-items-center">
-                            <div class="d-flex flex-column">
+                            <div class="d-flex flex-column mb-2">
                                 <label>profile</label>
                                 <input class="form-control" name="image" id="file"
                                 onchange="return fileValidation()"  type='file' required/>
                             </div>
-                            <div class="d-flex ">
+                            <div class="d-flex mb-2">
                                 <div class="col-6 p-1">
                                     <label>First Name</label>
                                     <input class="form-control" name='first_name' type='text'
                                         placeholder="First Name" required />
-
-
-
                                 </div>
                                 <div class=" col-6 p-1">
                                     <label>Last Name</label>
                                     <input class="form-control" name='last_name' type='text' placeholder="Last Name" required/>
 
                                 </div>
-
                             </div>
-                            <div class="d-flex mb-3">
+                            <div class="d-flex mb-2">
                                 <div class="col-6 p-1">
                                     <label>Email</label>
                                     <input class="form-control" name='email' type='email'
@@ -82,33 +78,8 @@
                                 </div>
 
                             </div>
-                            <div class="d-flex mb-3">
-                                <div class="col-6 p-1">
-                                    <label>DOB</label>
-                                    <input class="form-control" type='date' name='DOB'
-                                        placeholder="example@email.com" required/>
-
-                                </div>
-
-                                <div class=" col-6 p-1">
-                                    <label>Class Type</label>
-                                    <select class="form-control" name="cls_name">
-                                        <option name='cls_name' value="1">class 1</option>
-                                        <option name='cls_name' value="2">class 2</option>
-                                        <option name='cls_name' value="3">class 3</option>
-                                        <option name='cls_name' value="4" >class 4</option>
-                                        <option name='cls_name' value="5">class 5</option>
-                                        <option name='cls_name' value="6">class 6</option>
-                                        <option name='cls_name' value="7">class 7</option>
-                                        <option name='cls_name' value="8">class 8</option>
-                                        <option name='cls_name' value="9">class 9</option>
-                                        <option name='cls_name' value="10">class 10</option>
-                                        <option name='cls_name' value="11">class 11</option>
-                                        <option name='cls_name' value="12">class 12</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="d-flex mb-3">
+                            
+                            <div class="d-flex mb-2">
                                 <div class="col-6 p-1">
                                     <label>Password</label>
                                     <input class="form-control" name='password' pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" type='password'
@@ -134,7 +105,7 @@
                 </div>
             </form>
         </div>
-        {% include "students/includes/footer.html"  %}
+        {% include "Stock/includes/footer.html"  %}
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
