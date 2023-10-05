@@ -85,26 +85,35 @@ def logoutuser(request):
 
 class Addorder(APIView):
     def post(self,request):
-        
         order=models.Stock.objects.get(id=request.POST['id'])
         if order.qnt!=0:
             order.qnt=order.qnt-int(request.POST['qut'])
             order.is_sold=True
             order.save()
+            plcord=models.Order_placed()
+            plcord.Product=order.Product
+            plcord.amnt=order.amnt
+            plcord.Order_by='test'
+            plcord.save()
+
+            return Response({'success':'true',
+                                'error_msg':'',
+                                'errors':{},
+                                'response':{'Hurry! your order is placed'},
+
+                                },status=status.HTTP_202_ACCEPTED)
         else:
             return Response({'success':'true',
                             'error_msg':'',
                             'errors':{},
                             'response':'Order out of stock',
                             },status=status.HTTP_202_ACCEPTED) 
-        plcord=models.Order_placed()
-        plcord.Product=order.Product
-        plcord.amnt=order.amnt
-        plcord.Order_by='test'
-
+        
+    def get(self,request):
+        order=models.Stock.objects.all()
         return Response({'success':'true',
                             'error_msg':'',
                             'errors':{},
-                            'response':{},
+                            'response':{'data':serializers.stock_serializer(order,many=True).data},
 
                             },status=status.HTTP_202_ACCEPTED)

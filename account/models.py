@@ -74,7 +74,7 @@ class Stock(models.Model):
 class Order_placed(models.Model):
 	Product=models.CharField(max_length=50,default='')
 	Order_by=models.CharField(max_length=50,default='')
-	order_date=models.DateTimeField(auto_created=True)
+	order_date=models.DateTimeField(auto_created=True,auto_now_add=True)
 	amnt=models.IntegerField(default=0)
 	order_status=models.CharField(max_length=40, default='progress') #progress, on_the_way, done
 	
